@@ -2,6 +2,7 @@ package nl.novi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Person {
 
@@ -96,5 +97,18 @@ public class Person {
 
     public void setChildren(List<Person> children) {
         this.children = children;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return getAge() == person.getAge() && Objects.equals(getName(), person.getName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getChildren(), person.getChildren()) && Objects.equals(getPartner(), person.getPartner());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getLastName(), getAge(), getChildren(), getPartner());
     }
 }
